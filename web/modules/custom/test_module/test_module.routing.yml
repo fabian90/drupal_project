@@ -1,0 +1,23 @@
+test_module.form:
+  path: '/test/formulario'
+  defaults:
+    _form: '\Drupal\test_module\Form\TestModuleForm'
+    _title: 'Formulario Test'
+  requirements:
+    _permission: 'access content'
+
+test_module.data_page:
+  path: '/test/formulario/data'
+  defaults:
+    _controller: '\Drupal\test_module\Controller\TestModuleController::dataPage'
+    _title: 'Datos Formulario'
+  requirements:
+    _permission: 'access content'
+
+test_module.api_data:
+  path: '/API/formulario'
+  defaults:
+    _controller: '\Drupal\test_module\Controller\TestModuleController::apiData'
+  requirements:
+    _access: 'TRUE'
+

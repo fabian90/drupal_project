@@ -1,0 +1,33 @@
+docker_manager.containers:
+  path: '/API/docker/containers'
+  defaults:
+    _controller: '\Drupal\docker_manager\Controller\DockerManagerController::getContainers'
+  methods: [GET]
+
+docker_manager.start_container:
+  path: '/API/docker/containers/start/{id}'
+  defaults:
+    _controller: '\Drupal\docker_manager\Controller\DockerManagerController::startContainer'
+  requirements:
+    _permission: 'access content'
+
+docker_manager.stop_container:
+  path: '/API/docker/containers/stop/{id}'
+  defaults:
+    _controller: '\Drupal\docker_manager\Controller\DockerManagerController::stopContainer'
+  requirements:
+    _permission: 'access content'
+
+docker_manager.remove_container:
+  path: '/API/docker/containers/remove/{id}'
+  defaults:
+    _controller: '\Drupal\docker_manager\Controller\DockerManagerController::removeContainer'
+  requirements:
+    _permission: 'access content'
+
+docker_manager.logs:
+  path: '/API/docker/containers/logs/{id}'
+  defaults:
+    _controller: '\Drupal\docker_manager\Controller\DockerManagerController::getContainerLogs'
+  requirements:
+    _permission: 'access content'

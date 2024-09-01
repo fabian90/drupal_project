@@ -1,0 +1,59 @@
+/* Estilos generales */
+.test-module-data {
+  max-width: 800px; /* Ajusta el ancho máximo */
+  margin: 0 auto; /* Centra el contenido */
+  padding: 20px; /* Espaciado interno */
+}
+
+/* Estilos para la tabla */
+table {
+  width: 100%; /* Ancho completo */
+  border-collapse: collapse; /* Colapsa bordes */
+  margin-top: 20px; /* Espacio encima de la tabla */
+}
+
+th, td {
+  border: 1px solid #ddd; /* Bordes grises para celdas */
+  padding: 8px; /* Espaciado interno en celdas */
+  text-align: left; /* Alineación a la izquierda */
+}
+
+th {
+  background-color: #f2f2f2; /* Color de fondo para encabezados */
+  color: #333; /* Color del texto de encabezados */
+}
+
+/* Ajustar el texto en las celdas de la tabla */
+td {
+  word-wrap: break-word; /* Permite que las palabras largas se dividan */
+  white-space: normal; /* Permite que el texto fluya normalmente */
+  max-width: 150px; /* Ancho máximo de la celda (ajustar según sea necesario) */
+}
+
+/* Estilos para filas alternas */
+tbody tr:nth-child(even) {
+  background-color: #f9f9f9; /* Color de fondo para filas pares */
+}
+
+tbody tr:hover {
+  background-color: #f1f1f1; /* Color de fondo al pasar el ratón */
+}
+
+/* Estilos para botones */
+.button {
+  display: inline-block; /* Para permitir padding */
+  padding: 10px 20px; /* Espaciado interno */
+  background-color: #007bff; /* Color de fondo */
+  color: white; /* Color del texto */
+  text-decoration: none; /* Sin subrayado */
+  border-radius: 5px; /* Bordes redondeados */
+  transition: background-color 0.3s; /* Transición suave */
+}
+
+.button--primary {
+  background-color: #28a745; /* Color específico para botones primarios */
+}
+
+.button:hover {
+  background-color: #0056b3; /* Color de fondo al pasar el ratón */
+}

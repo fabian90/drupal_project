@@ -1,0 +1,40 @@
+{# test-module-data.html.twig #}
+{{ attach_library('test_module/global-styling') }}
+<div class="test-module-data">
+  <div class="actions">
+    <a href="{{ path('test_module.form') }}" class="button button--primary">
+      {{ 'Crear Nuevo Registro'|t }}
+    </a>
+  </div>
+
+  {% if data is empty %}
+    <p>No hay datos disponibles.</p>
+  {% else %}
+    <table>
+      <thead>
+        <tr>
+          <th>Apellido</th>
+          <th>Nombre</th>
+          <th>Tipo de Documento</th>
+          <th>Número de Documento</th>
+          <th>Correo</th>
+          <th>Teléfono</th>
+          <th>País</th>
+        </tr>
+      </thead>
+  <tbody>
+    {% for record in data %}
+      <tr>
+        <td>{{ record.nombre }}</td>
+        <td>{{ record.apellido }}</td>
+        <td>{{ record.tipo_documento_nombre }}</td>
+        <td>{{ record.numero_documento }}</td>
+        <td>{{ record.correo }}</td>
+        <td>{{ record.telefono }}</td>
+        <td>{{ record.pais_nombre }}</td>
+      </tr>
+    {% endfor %}
+      </tbody>
+    </table>
+  {% endif %}
+</div>

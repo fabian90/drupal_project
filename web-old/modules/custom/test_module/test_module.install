@@ -1,0 +1,20 @@
+<?php
+
+/**
+ * Implements hook_install().
+ */
+function test_module_install() {
+  $vocabularies = [
+    'document_type' => 'Tipo de Documento',
+    'country' => 'País',
+  ];
+
+  foreach ($vocabularies as $vid => $name) {
+    if (!\Drupal\taxonomy\Entity\Vocabulary::load($vid)) {
+      \Drupal\taxonomy\Entity\Vocabulary::create([
+        'vid' => $vid,
+        'name' => $name,
+      ])->save();
+    }
+  }
+}

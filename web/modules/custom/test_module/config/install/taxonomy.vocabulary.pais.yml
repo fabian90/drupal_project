@@ -1,0 +1,6 @@
+# langcode: 'en'
+# status: true
+# name: 'País'
+# description: 'Vocabulario para los países.'
+# core: '8.x'
+# vid: 'pais'

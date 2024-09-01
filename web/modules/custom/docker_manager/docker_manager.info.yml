@@ -1,0 +1,7 @@
+name: Docker Manager
+type: module
+description: 'Module to manage Docker containers.'
+core_version_requirement: ^8 || ^9 || ^10
+package: Custom
+dependencies:
+  - drupal:rest

@@ -1,0 +1,16 @@
+# Drupal core files
+/core
+/vendor
+
+# Config files
+/sites/default/files
+/sites/default/settings.php
+
+# Logs
+/logs
+*.log
+
+# Otros archivos temporales
+*.tmp
+*.bak
+*.swp

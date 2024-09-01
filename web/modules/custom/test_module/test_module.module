@@ -1,0 +1,161 @@
+<?php
+/**
+ * @file
+ * Contiene las funciones del módulo Test Module.
+ */
+
+use Drupal\Core\Routing\RouteMatch;
+use Drupal\Core\Routing\CurrentRouteMatch;
+use Drupal\Core\Database\Database;
+
+/**
+ * Implements hook_theme().
+ */
+function test_module_theme() {
+  return [
+    'test_module_data' => [
+      'variables' => [
+        'data' => NULL, // Variable para los datos que se pasan a la plantilla.
+      ],
+      'template' => 'test-module-data', // Nombre de la plantilla.
+    ],
+  ];
+}
+
+/**
+ * Implementa hook_help().
+ */
+function test_module_help($route_name, CurrentRouteMatch $route_match) {
+  switch ($route_name) {
+    case 'help.page.test_module':
+      // Renderiza la ayuda para el módulo Test Module.
+      return [
+        '#markup' => '<p>' . t('Ayuda para el módulo Test Module.') . '</p>',
+      ];
+  }
+}
+
+/**
+ * Implementa hook_install().
+ */
+function test_module_install() {
+  // Define el esquema de la tabla.
+  $schema = [
+    'description' => 'Table for test module data.',
+    'fields' => [
+      'id' => [
+        'type' => 'serial',
+        'not null' => TRUE,
+      ],
+      'apellido' => [
+        'type' => 'varchar',
+        'length' => 255,
+        'not null' => TRUE,
+      ],
+      'nombre' => [
+        'type' => 'varchar',
+        'length' => 255,
+        'not null' => TRUE,
+      ],
+      'tipo_documento' => [
+        'type' => 'varchar',
+        'length' => 50,
+        'not null' => TRUE,
+      ],
+      'numero_documento' => [
+        'type' => 'varchar',
+        'length' => 50,
+        'not null' => TRUE,
+      ],
+      'correo' => [
+        'type' => 'varchar',
+        'length' => 255,
+        'not null' => TRUE,
+      ],
+      'telefono' => [
+        'type' => 'varchar',
+        'length' => 50,
+        'not null' => TRUE,
+      ],
+      'pais' => [
+        'type' => 'varchar',
+        'length' => 100,
+        'not null' => TRUE,
+      ],
+    ],
+    'primary key' => ['id'],
+  ];
+
+  // Obtiene la conexión a la base de datos.
+  $connection = Database::getConnection();
+
+  // Verifica si la tabla ya existe y, si es así, la elimina.
+  if ($connection->schema()->tableExists('test_module_data')) {
+    $connection->schema()->dropTable('test_module_data');
+  }
+
+  // Crea la tabla en la base de datos.
+  $connection->schema()->createTable('test_module_data', $schema);
+
+  // Mensaje de log para verificar que la instalación fue exitosa.
+  \Drupal::logger('test_module')->notice('La tabla test_module_data ha sido creada.');
+
+  // Inserta datos de prueba.
+  $connection->insert('test_module_data')
+    ->fields([
+      'apellido' => 'González',
+      'nombre' => 'Juan',
+      'tipo_documento' => '4',
+      'numero_documento' => '123456789',
+      'correo' => 'juan.gonzalez@example.com',
+      'telefono' => '123456789',
+      'pais' => '1',
+    ])
+    ->execute();
+
+  $connection->insert('test_module_data')
+    ->fields([
+      'apellido' => 'Pérez',
+      'nombre' => 'María',
+      'tipo_documento' => '4',
+      'numero_documento' => '987654321',
+      'correo' => 'maria.perez@example.com',
+      'telefono' => '987654321',
+      'pais' => '1',
+    ])
+    ->execute();
+    // Definir los datos base para la inserción
+    $base_apellido = 'González';
+    $base_nombre = 'Juan';
+    $tipo_documento = '4'; // Suponiendo que este es un tipo de documento válido
+    $numero_documento_base = 123456789; // Base para el número de documento
+    $correo_base = 'juan.gonzalez@example.com';
+    $telefono = '123456789'; // Suponiendo que este es un número de teléfono válido
+    $pais = '1'; // Suponiendo que este es un país válido
+
+  // Crear 200 registros
+   for ($i = 1; $i <= 200; $i++) {
+        // Generar datos únicos para cada registro
+        $apellido = $base_apellido . " " . $i; // Cambia el apellido para que sea único
+        $nombre = $base_nombre . " " . $i; // Cambia el nombre para que sea único
+        $numero_documento = $numero_documento_base + $i; // Incrementa el número de documento
+        $correo = str_replace('juan.gonzalez', 'juan.gonzalez' . $i, $correo_base); // Cambia el correo para que sea único
+
+        // Insertar el registro en la tabla 'test_module_data'
+        try {
+            $connection->insert('test_module_data')
+                ->fields([
+                    'apellido' => $apellido,
+                    'nombre' => $nombre,
+                    'tipo_documento' => $tipo_documento,
+                    'numero_documento' => $numero_documento,
+                    'correo' => $correo,
+                    'telefono' => $telefono,
+                    'pais' => $pais,
+                ])
+                ->execute();
+        } catch (\Exception $e) {
+            \Drupal::logger('test_module')->error('Error inserting record for %name: %message', ['%name' => $nombre, '%message' => $e->getMessage()]);
+        }
+    }
+}

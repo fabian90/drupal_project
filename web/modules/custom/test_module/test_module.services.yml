@@ -1,0 +1,4 @@
+services:
+  test_module.test_module_service:
+    class: Drupal\test_module\Service\TestModuleService
+    arguments: ['@database']

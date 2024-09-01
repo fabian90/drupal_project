@@ -1,0 +1,6 @@
+# langcode: 'en'
+# status: true
+# name: 'Tipo Documento'
+# description: 'Vocabulario para los tipos de documento.'
+# core: '8.x'
+# vid: 'tipo_documento'

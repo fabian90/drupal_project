@@ -1,0 +1,11 @@
+name: 'Test Module'
+type: module
+description: 'Módulo de ejemplo con formulario y listado de datos prueba.'
+core_version_requirement: ^8 || ^9 || ^10
+package: Custom
+dependencies:
+  - drupal:taxonomy
+  - drupal:field
+libraries:
+  - test_module/global-styling
+version: 2.0
